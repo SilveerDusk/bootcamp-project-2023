@@ -2,7 +2,7 @@
 import Image from 'next/image';
 import Comment from '@/components/comment';
 import React, { useState, useEffect } from 'react';
-import { IBlog, IComment } from '@/database/blogSchema';
+import { IProject, IComment } from '@/database/portfolioSchema';
 
 type IParams = {
   params: {
@@ -30,19 +30,19 @@ function parseCommentTime(time: Date) {
   return formattedDate;
 }
 
-export default function Blog({ params }: IParams) {
-  const [blog, setBlog] = useState<IBlog | null>(null);
+export default function Project({ params }: IParams) {
+  const [project, setProject] = useState<IProject | null>(null);
 	const { slug } = params // another destructure
 
 
-  async function getBlog(slug: string) {
+  async function getProject(slug: string) {
     try {
-      const res = await fetch(`/api/blog/${slug}`, {
+      const res = await fetch(`/api/portfolio/${slug}`, {
         cache: "no-store",	
       })
 
       if (!res.ok) {
-        throw new Error("Failed to fetch blog");
+        throw new Error("Failed to fetch project");
       }
 
       return res.json();
@@ -81,7 +81,7 @@ export default function Blog({ params }: IParams) {
 
         //Add comment to db and update UI
         const response = await fetch(
-          `/api/blog/${slug}/comment`, {
+          `/api/portfolio/${slug}/comment`, {
             method: "POST",
             headers: { 'Content-Type': "application/json" },
             body: JSON.stringify(newComment),
@@ -93,15 +93,15 @@ export default function Blog({ params }: IParams) {
         if (descriptionText) descriptionText.value = "";
 
         if (response.status === 200)
-          setBlog({
-            title: blog?.title || "",
-            slug: blog?.slug || "",
-            date: blog?.date || new Date(),
-            description: blog?.description || "",
-            content: blog?.content || "",
-            img: blog?.img || "",
-            comments: blog
-              ? [...blog.comments, newComment]
+          setProject({
+            title: project?.title || "",
+            slug: project?.slug || "",
+            description: project?.description || "",
+            content: project?.content || "",
+            img: project?.img || "",
+            github: project?.github || "",
+            comments: project
+              ? [...project.comments, newComment]
               : [newComment],
           });
     } catch (err) {
@@ -111,23 +111,22 @@ export default function Blog({ params }: IParams) {
   }
 
   useEffect(() => {
-    getBlog(slug).then((blog: IBlog | null) => {
-      setBlog(blog);
+    getProject(slug).then((project: IProject | null) => {
+      setProject(project);
     });
   }, [slug]);
 
-  return (blog && <div>
+  return (project && <div>
     <div className="centered">
       <div className="post">
-        <h1 className="title">{blog.title}</h1>
-        <Image src={blog.img} alt={blog.title} width={600} height={600}/>
-        <h3 className="sub-sub-title">{parseCommentTime(blog.date)}</h3>
-        <p className="post_p">{blog.content}</p>
+        <h1 className="title">{project.title}</h1>
+        <Image src={project.img} alt={project.title} width={600} height={600}/>
+        <p className="post_p">{project.content}</p>
       </div>
     </div>
     <div className='post'>
       <h1 className="sub-title">Comment Section</h1>
-      {blog.comments.map((comment: IComment, index: number) => (
+      {project.comments.map((comment: IComment, index: number) => (
 	      <Comment key={index} comment={comment} />
 	    ))}
       <h3 className='sub-sub-title'>Leave a Comment!</h3>

@@ -9,7 +9,11 @@
     "lint": "next lint"
   },
   "dependencies": {
+<<<<<<< HEAD
     "mongoose": "^8.7.2",
+=======
+    "mongoose": "^8.0.3",
+>>>>>>> refs/remotes/origin/main
     "next": "14.0.1",
     "react": "^18",
     "react-dom": "^18"
