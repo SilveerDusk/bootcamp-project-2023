@@ -1,13 +1,10 @@
-import IComment from '@/database/blogSchema'
 import style from '@/components/blogPreview.module.css'
 
-{/* When we pass props, the name that we use to pass values
-		is the key for the type
-*/}
-type CommentProps = {
-  comment: IComment;
+type IComment = {
+  user: string;
+  comment: string;
+  time: Date;
 }
-
 
 {/* Modularizing code into seperate functions is useful.
   Makes your code look nicer and allows for better readability.
@@ -36,7 +33,7 @@ function parseCommentTime(time: Date){
 }
 
 
-function Comment({ comment }: CommentProps) {
+function Comment({ comment }: {comment: IComment}) {
   return (
     <div className='centered'>
       <div className='top'>

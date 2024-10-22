@@ -1,17 +1,17 @@
 /* NavBar */
-.navbar{
+.navbar {
   display: flex;
   flex-wrap: nowrap;
   align-items: center;
   justify-content: space-between;
   padding: 0 20px;
-  background-color: #03055ed4;
+  background-color: #023430;
   padding-right: 25px;
   font-size: 20px;
   color: seashell;
   padding: 15px;
 }
-.logo_a{
+.logo_a {
   display: block;
   font-size: 1.1em;
   margin-block-start: 0.67em;
@@ -22,7 +22,7 @@
   color: seashell;
   text-decoration: none;
 }
-.navbar_li_a{
+.navbar_li_a {
   padding-right: 25px;
   font-size: 20px;
   color: seashell;

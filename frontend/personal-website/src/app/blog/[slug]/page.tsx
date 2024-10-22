@@ -1,6 +1,12 @@
 import Image from 'next/image';
 import Comment from '@/components/comment';
 
+type IComment = {
+  user: string;
+  comment: string;
+  time: Date;
+}
+
 type IParams = {
   params: {
       slug: string
@@ -59,7 +65,7 @@ export default async function Blog({ params }: IParams) {
     </div>
     <div className='post'>
       <h1 className="sub-title">Comment Section</h1>
-      {blog.comments.map((comment: String, index: number) => (
+      {blog.comments.map((comment: IComment, index: number) => (
 	      <Comment key={index} comment={comment} />
 	    ))}
     </div>

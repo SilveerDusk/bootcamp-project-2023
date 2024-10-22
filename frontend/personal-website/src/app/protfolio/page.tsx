@@ -1,5 +1,3 @@
-import Image from "next/image"
-import Link from "next/link"
 import ProjectPreview from "@/components/projectPreview"
 import connectDB from "@/database/db"
 import Project from "@/database/protfolioSchema"
@@ -32,6 +30,7 @@ export default async function Protfolio() {
               description={project.description}
               slug={project.slug}
               image={project.image}
+              github={project.github}
               />
             )}
           </ul>

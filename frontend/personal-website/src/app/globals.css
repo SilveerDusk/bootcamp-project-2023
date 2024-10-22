@@ -4,7 +4,7 @@
 
 /* Body */
 body{
-  background: linear-gradient(135deg, #0077B6, #48CAE4);
+  background: linear-gradient(135deg, #001E2B, #023430);
   background-repeat: no-repeat;
   background-attachment: fixed;
   height: 100%;
@@ -22,7 +22,7 @@ main{
   align-items: center;
   justify-content: space-between;
   padding: 0 20px;
-  background-color: #03055ed4;
+  background-color: #023430;
 }
 .logo a{
   display: block;
@@ -50,7 +50,7 @@ main{
   align-items: center;
   margin: 10px;
   padding: 5px;
-  background: linear-gradient(45deg, #023E8A, #0096C7);
+  background: linear-gradient(45deg, #001E2B, #023430);
   background-repeat: no-repeat;
   background-attachment: fixed;
   border-radius: 20px;
